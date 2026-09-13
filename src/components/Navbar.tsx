@@ -21,6 +21,122 @@ interface NavbarProps {
   onOpenPrintModal?: () => void;
 }
 
+export const RsnaBrand = () => (
+  <div className="flex items-center gap-3 shrink-0">
+    <div className="flex flex-col items-center select-none">
+      {/* RSNA SVG Emblem */}
+      <svg
+        viewBox="0 0 220 62"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        className="h-7 w-auto"
+        aria-label="RSNA"
+      >
+        <defs>
+          <linearGradient id="rsna-swoosh-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#38BDF8" />
+            <stop offset="100%" stopColor="#0284C7" />
+          </linearGradient>
+        </defs>
+
+        {/* Diagonal Swoosh on the leg of 'R' */}
+        <path
+          d="M8 54 L32 10 L44 24 L20 58 Z"
+          fill="url(#rsna-swoosh-grad)"
+        />
+
+        {/* Bold Serif Letters */}
+        <text
+          x="22"
+          y="50"
+          fontFamily="Georgia, Cambria, 'Times New Roman', serif"
+          fontSize="52"
+          fontWeight="bold"
+          letterSpacing="-1.5"
+          fill="#38BDF8"
+          className="fill-sky-400"
+        >
+          RSNA
+        </text>
+
+        {/* Registered Trademark ® */}
+        <circle cx="202" cy="18" r="5" stroke="#94A3B8" strokeWidth="1.2" fill="none" />
+        <text
+          x="200"
+          y="21"
+          fontFamily="sans-serif"
+          fontSize="6.5"
+          fontWeight="bold"
+          fill="#94A3B8"
+        >
+          R
+        </text>
+      </svg>
+
+      {/* Two-Line Stacked Title */}
+      <div className="flex flex-col items-center -mt-0.5 text-center leading-[1.05]">
+        <span className="text-[8px] font-normal text-slate-300 tracking-tight">
+          Radiological Society
+        </span>
+        <span className="text-[7.5px] font-normal text-slate-400 tracking-tight">
+          of North America
+        </span>
+      </div>
+    </div>
+
+    {/* Subtle Divider */}
+    <div className="h-8 w-px bg-slate-800" />
+
+    {/* Platform Name & Field Strength */}
+    <div className="flex items-center gap-2">
+      <span className="font-semibold text-white tracking-tight text-base">
+        OmniKnee
+      </span>
+      <span className="px-1.5 py-0.5 text-[10px] font-mono font-medium rounded bg-cyan-950/80 text-cyan-400 border border-cyan-800/50">
+        3.0T
+      </span>
+    </div>
+  </div>
+);
+
+export const RsnaLogo = ({ className = "h-6 w-auto" }: { className?: string }) => (
+  <svg
+    viewBox="0 0 240 68"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    className={className}
+    aria-label="RSNA Logo"
+  >
+    <defs>
+      <linearGradient id="rsna-cyan-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stopColor="#38BDF8" />
+        <stop offset="100%" stopColor="#0284C7" />
+      </linearGradient>
+    </defs>
+    {/* Stylized Diagonal Swoosh Leg of 'R' */}
+    <path
+      d="M12 58 L38 10 L52 24 L24 64 Z"
+      fill="url(#rsna-cyan-grad)"
+    />
+    {/* RSNA Letterforms */}
+    <text
+      x="26"
+      y="54"
+      fontFamily="Georgia, Cambria, serif"
+      fontSize="58"
+      fontWeight="bold"
+      letterSpacing="-1.5"
+      fill="#1E40AF"
+      className="dark:fill-[#38BDF8]"
+    >
+      RSNA
+    </text>
+    {/* Registered Trademark symbol */}
+    <circle cx="218" cy="18" r="5" stroke="currentColor" strokeWidth="1.2" className="text-slate-400" />
+    <text x="216" y="21" fontFamily="sans-serif" fontSize="6.5" fontWeight="bold" fill="currentColor" className="text-slate-400">R</text>
+  </svg>
+);
+
 export const Navbar: React.FC<NavbarProps> = ({
   activeTab,
   onTabChange,
@@ -56,15 +172,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     <header className="h-14 shrink-0 w-full bg-[#090D14] border-b border-slate-800/80 px-4 flex items-center justify-between gap-4 z-30 select-none">
       {/* ── ZONE 1: BRAND & CASE SELECTOR ── */}
       <div className="flex items-center gap-3 shrink-0 min-w-0">
-        <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-lg bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center">
-            <Activity className="w-4 h-4 text-cyan-400" />
-          </div>
-          <span className="font-bold text-base tracking-tight text-white">RSNA-OmniKnee</span>
-          <span className="text-[11px] font-mono px-1.5 py-0.5 rounded bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 hidden sm:inline">
-            3.0T
-          </span>
-        </div>
+        <RsnaBrand />
 
         <div className="h-5 w-px bg-slate-800 hidden sm:block" />
 

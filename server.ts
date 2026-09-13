@@ -1,4 +1,5 @@
 import express from "express";
+import http from "http";
 import path from "path";
 import dotenv from "dotenv";
 import { createServer as createViteServer } from "vite";
@@ -8,6 +9,7 @@ dotenv.config();
 
 const app = express();
 const PORT = 3000;
+const server = http.createServer(app);
 
 app.use(express.json({ limit: "50mb" }));
 
@@ -882,7 +884,13 @@ app.get("/api/ingest/sample-cases", (req, res) => {
 async function startServer() {
   if (process.env.NODE_ENV !== "production") {
     const vite = await createViteServer({
-      server: { middlewareMode: true },
+      server: {
+        middlewareMode: true,
+        hmr: {
+          server,
+          clientPort: 443,
+        },
+      },
       appType: "spa",
     });
     app.use(vite.middlewares);
@@ -894,7 +902,7 @@ async function startServer() {
     });
   }
 
-  app.listen(PORT, "0.0.0.0", () => {
+  server.listen(PORT, "0.0.0.0", () => {
     console.log(`RSNA Knee Abnormality Detection server running on http://0.0.0.0:${PORT}`);
   });
 }
